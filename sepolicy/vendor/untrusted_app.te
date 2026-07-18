@@ -1,3 +1,0 @@
-allow untrusted_app sysfs:file read;
-allow untrusted_app sysfs_bus:dir search;
-allow untrusted_app vendor_file:file getattr;
