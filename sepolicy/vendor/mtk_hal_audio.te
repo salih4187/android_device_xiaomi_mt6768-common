@@ -1,0 +1,1 @@
+allow mtk_hal_audio default_android_hwservice:hwservice_manager find;
