@@ -5,11 +5,13 @@
 #
 import /system/etc/init/hw/vendor_init_as_system.rc
 import /init.environ.rc
+import /vendor/etc/init/hw/init.aee.rc
+import /system_ext/etc/init/hw/init.aee.rc
 import /system/etc/init/update_verifier.rc
 import /vendor/etc/init/android.hardware.boot@1.1-service.rc
 import /vendor/etc/init/android.hardware.boot@1.1-service-lazy.rc
 import /vendor/etc/init/trustonic.rc
-import vendor/etc/init/hw/meta_init.connectivity.rc
+import ${ro.vendor.rc}meta_init.connectivity.rc
 import /vendor/etc/init/hw/meta_init.project.rc
 import /vendor/etc/init/microtrust.rc
 #copy from system/etc for APEX
@@ -26,10 +28,10 @@ import /vendor/etc/init/microtrust.bp_kmsetkey_ca.rc
 import /vendor/etc/init/vendor.microtrust.hardware.thh@2.0-service.rc
 import /vendor/etc/init/microtrust.init_thh.rc
 ##microtrust end
-import vendor/etc/init/hw/multi_init.rc
+import ${ro.vendor.rc}multi_init.rc
 
 #Make sure meta_init.modem.rc is the last rc file.
-import vendor/etc/init/hw/meta_init.modem.rc
+import ${ro.vendor.rc}meta_init.modem.rc
 
 
 on early-init
@@ -601,6 +603,16 @@ service emdlogger1 /system/system_ext/bin/emdlogger1
     class main
     user shell
     group system shell radio sdcard_rw inet sdcard_r media_rw
+
+service loghidlvendorservice /vendor/bin/loghidlvendorservice
+    class main
+    user shell
+    group system shell radio
+
+service loghidlsysservice /system/bin/loghidlsysservice
+    class main
+    user shell
+    group system shell radio
 
 service meta_tst /vendor/bin/meta_tst
     group radio system wifi audio bluetooth media gps
