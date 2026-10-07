@@ -261,6 +261,7 @@ PRODUCT_PACKAGES += \
     meta_init.rc \
     multi_init.rc \
     fstab.mt6768 \
+    fstab.enableswap \
     ueventd.mtk.rc
 
 # Fstab
