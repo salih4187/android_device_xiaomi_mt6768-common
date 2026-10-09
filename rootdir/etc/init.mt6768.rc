@@ -26,8 +26,6 @@ on early-init
 
 on init
     write /proc/bootprof "INIT:init"
-    # Support legacy paths
-    symlink /sdcard /mnt/sdcard
 
     # if primary storage is physical, set ro.vold.primary_physical to 1
     # setprop ro.vold.primary_physical 1
@@ -150,9 +148,6 @@ on post-fs
     write /proc/perfmgr/boost_ctrl/eas_ctrl/boot_boost "2 100"
     write /proc/perfmgr/boost_ctrl/eas_ctrl/boot_boost "3 100"
     write /proc/perfmgr/boost_ctrl/eas_ctrl/sched_stune_task_thresh 0
-
-    # Support legacy paths
-    symlink /sdcard /storage/sdcard0
 
     #change permissions for mediaserver
     chown root media /proc/clkmgr/mipi_test
@@ -378,9 +373,9 @@ on post-fs-data
     chmod 0660 /dev/vcu
     chown media system /dev/vcu
     chmod 0660 /dev/video0
-    chown media system /dev/video0
+    chown mediacodec system /dev/video0
     chmod 0660 /dev/video1
-    chown media system /dev/video1
+    chown mediacodec system /dev/video1
     mkdir /data/vendor/vcodec 0770 media system
     mkdir /data/vendor/vcodec/log 0770 media system
     mkdir /data/vendor/vcodec/in 0770 media system
@@ -507,7 +502,7 @@ on post-fs-data
 
     # FM Radio device node
     chmod 0666 /dev/fm
-    chown media media /dev/fm
+    chown system system /dev/fm
 
     # device apc settings
 
